@@ -36,28 +36,38 @@ export default function AboutPage () {
 						</h2>
 						<div className="mt-5 space-y-5 text-[1.05rem] leading-relaxed text-muted-foreground lg:text-[1.15rem]">
 							<p>
-								Founded in Nairobi, Raha Stays was born
-								from a simple belief: that short-term
-								accommodation should feel like home —
-								but better. We saw a gap between
-								impersonal hotels and inconsistent
-								Airbnb listings, and set out to create
-								a new standard for serviced stays in
-								East Africa.
+								Raha is a Swahili word for comfort, joy
+								and pleasure. It captures the feeling we
+								want every guest to take away from a stay
+								with us.
 							</p>
 							<p>
-								Every Raha Stays residence is
-								thoughtfully designed, professionally
-								managed, and supported by concierge
-								services that elevate your experience.
-								Whether you are visiting for business,
-								relocating, or exploring Kenya, we ensure
-								your stay is seamless.
+								Raha Stays began with a simple belief:
+								where you stay should feel like part of
+								the experience, not just a place to sleep.
+								We created welcoming homes for travellers
+								who want the comfort of settling in and
+								the freedom to explore.
 							</p>
 							<p>
-								“Raha” means comfort, ease and happiness
-								in Swahili — and that is exactly what we
-								deliver.
+								Whether you are visiting for work,
+								reconnecting with family, or discovering
+								somewhere new, we want you to feel at ease
+								from the moment you arrive. Our thoughtfully
+								furnished homes give you space to make each
+								stay your own. Through Raha Concierge, we
+								can help with the details that make a trip
+								easier and more memorable, from airport
+								transfers and grocery shopping to a private
+								cook and local experiences.
+							</p>
+							<p>
+								That is what Raha means to us: feeling at
+								home, enjoying the moment, and making room
+								to experience more.
+							</p>
+							<p className="font-medium text-ink">
+								Raha Stays. Experience More.
 							</p>
 						</div>
 					</div>

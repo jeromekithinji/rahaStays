@@ -34,7 +34,11 @@ export function CorporateEnquiryForm () {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-5">
+		<form
+			id="corporate-enquiry"
+			onSubmit={handleSubmit}
+			className="scroll-mt-28 space-y-5 lg:scroll-mt-32"
+		>
 			<h2 className="font-heading text-[1.65rem] leading-tight font-medium tracking-[-0.02em] text-ink lg:text-[2rem]">
 				Corporate Accommodation Enquiry
 			</h2>

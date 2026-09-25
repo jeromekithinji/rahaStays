@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 import { StayCard } from '@/components/home/stay-card'
 import {
@@ -26,23 +27,33 @@ export function StaysSection () {
 				aria-label="Stay filters"
 				className="sticky top-[3.75rem] z-30 border-b border-[#e6e3db] bg-cream px-5 lg:top-20 lg:px-8"
 			>
-				<ul className="mx-auto flex max-w-[1280px] gap-6 overflow-x-auto pb-px lg:gap-10">
+				<ul className="mx-auto flex h-12 max-w-[1280px] items-stretch gap-6 overflow-x-auto lg:gap-10">
 					{STAY_FILTERS.map((filter) => {
 						const isActive = filter.id === activeFilter
+						const tabClassName = isActive
+							? 'flex h-full items-center border-b-2 border-ink text-[0.95rem] leading-none font-medium text-ink'
+							: 'flex h-full items-center border-b-2 border-transparent text-[0.95rem] leading-none font-medium text-muted-foreground'
 
 						return (
 							<li key={filter.id} className="shrink-0">
-								<button
-									type="button"
-									onClick={() => handleFilterClick(filter.id)}
-									className={
-										isActive
-											? 'border-b-2 border-ink py-3 text-[0.95rem] font-medium text-ink'
-											: 'border-b-2 border-transparent py-3 text-[0.95rem] font-medium text-muted-foreground'
-									}
-								>
-									{filter.label}
-								</button>
+								{filter.id === 'corporate' ? (
+									<Link
+										href="/contact#corporate-enquiry"
+										className={tabClassName}
+									>
+										{filter.label}
+									</Link>
+								) : (
+									<button
+										type="button"
+										onClick={() =>
+											handleFilterClick(filter.id)
+										}
+										className={tabClassName}
+									>
+										{filter.label}
+									</button>
+								)}
 							</li>
 						)
 					})}

@@ -1,69 +1,72 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-	Car,
 	ChefHat,
-	ClipboardList,
+	Gamepad2,
 	Map,
+	Mountain,
 	Plane,
+	ShoppingBasket,
 	ShoppingBag,
-	Sparkles,
 	UtensilsCrossed,
 } from 'lucide-react'
 
-export interface ConciergeService {
+export interface ConciergeItem {
 	title: string
 	description: string
 	icon: LucideIcon
 }
 
-export const CONCIERGE_SERVICES: ConciergeService[] = [
+export const CONCIERGE_EXPERIENCES: ConciergeItem[] = [
 	{
-		title: 'Airport Transfers',
+		title: 'Airport transfers',
 		description:
-			'Private airport pick-up and drop-off arrangements.',
+			'Start and end your stay with a convenient airport transfer arranged around your flight details.',
 		icon: Plane,
 	},
 	{
-		title: 'Tours & Experiences',
+		title: 'Full day Nairobi city tour',
 		description:
-			'Discover Nairobi and Kenya through curated local experiences.',
+			'Explore Nairobi’s landmarks, culture and local highlights on a full day city experience.',
 		icon: Map,
 	},
 	{
-		title: 'Spa Bookings',
+		title: 'Full day Lake Naivasha experience',
 		description:
-			'Let us arrange wellness and spa experiences during your stay.',
-		icon: Sparkles,
+			'Enjoy a day away from the city and discover the scenery and activities around Lake Naivasha.',
+		icon: Mountain,
 	},
 	{
-		title: 'Private Chef',
+		title: 'Dinner at Carnivore',
 		description:
-			'Enjoy personalised meals prepared in the comfort of your residence.',
+			'Enjoy an evening at the famous Carnivore restaurant, known for its game meat dining experience and Simba Saloon.',
+		icon: UtensilsCrossed,
+	},
+	{
+		title: 'Bowling and arcade games',
+		description:
+			'Plan a fun outing for family or friends at bowling venues and arcades across the city.',
+		icon: Gamepad2,
+	},
+	{
+		title: 'Shopping at the Maasai markets',
+		description:
+			'Browse local crafts, jewellery, textiles and gifts at Nairobi’s Maasai markets.',
+		icon: ShoppingBag,
+	},
+]
+
+export const CONCIERGE_SERVICES: ConciergeItem[] = [
+	{
+		title: 'Private cook',
+		description:
+			'Enjoy meals prepared in the comfort of your apartment. Raha Concierge can help arrange a private cook for your stay or a special occasion.',
 		icon: ChefHat,
 	},
 	{
-		title: 'Car Rental',
+		title: 'Grocery shopping',
 		description:
-			'Convenient vehicle rental arrangements for your stay.',
-		icon: Car,
-	},
-	{
-		title: 'Shopping Concierge',
-		description:
-			'Allow our team to assist with shopping before or during your stay.',
-		icon: ShoppingBag,
-	},
-	{
-		title: 'Errands Concierge',
-		description:
-			'Need something handled? Raha Concierge can assist with selected errands.',
-		icon: ClipboardList,
-	},
-	{
-		title: 'Dining & Entertainment',
-		description:
-			'Restaurant reservations, entertainment recommendations and experience bookings.',
-		icon: UtensilsCrossed,
+			'Arrive to a stocked kitchen or ask Raha Concierge to help source groceries during your stay. Share your shopping list and preferences, and we will coordinate the purchase and delivery.',
+		icon: ShoppingBasket,
 	},
 ]
 

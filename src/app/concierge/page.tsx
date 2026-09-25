@@ -7,7 +7,7 @@ import { CONCIERGE_STEPS } from '@/data/concierge'
 export const metadata: Metadata = {
 	title: 'Concierge | Raha Stays',
 	description:
-		'Your stay can extend far beyond your apartment. Raha Concierge arranges services and experiences designed around you.',
+		'Make more of your stay in Nairobi with experiences arranged by Raha Concierge. Tell us what interests you, and our team will help you plan the details.',
 }
 
 export default function ConciergePage () {
@@ -16,21 +16,19 @@ export default function ConciergePage () {
 			<section className="bg-forest px-5 py-16 lg:px-8 lg:py-24">
 				<div className="mx-auto max-w-3xl text-center">
 					<h1 className="font-heading text-[1.85rem] leading-tight font-medium tracking-[-0.02em] text-gold lg:text-[3.15rem]">
-						Experience More With Raha Concierge
+						Raha Stays Experiences and Concierge Services
 					</h1>
 					<p className="mt-5 text-[1.05rem] leading-relaxed text-white/85 lg:mt-6 lg:text-[1.2rem]">
-						Your stay can extend far beyond your apartment.
-						Raha Concierge
-						<br />
-						arranges services and experiences designed around
-						you.
+						Make more of your stay in Nairobi with experiences
+						arranged by Raha Concierge. Tell us what interests
+						you, and our team will help you plan the details.
 					</p>
 				</div>
 			</section>
-			<section className="px-5 py-12 lg:px-8 lg:py-16">
+			<section className="px-5 py-12 pb-8 lg:px-8 lg:py-16 lg:pb-10">
 				<div className="mx-auto max-w-[1280px]">
 					<ConciergeServices />
-					<div className="mt-12 text-center lg:mt-16">
+					<div className="mt-5 text-center lg:mt-6">
 						<a
 							href="https://wa.me/254725749544"
 							className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-forest px-7 text-[0.95rem] font-medium text-gold-soft"
@@ -53,12 +51,12 @@ export default function ConciergePage () {
 					</div>
 				</div>
 			</section>
-			<section className="px-5 pb-16 pt-6 lg:px-8 lg:pb-24 lg:pt-8">
+			<section className="px-5 pb-16 pt-4 lg:px-8 lg:pb-24 lg:pt-6">
 				<div className="mx-auto max-w-[1280px]">
 					<h2 className="font-heading text-center text-[1.85rem] font-medium tracking-[-0.02em] text-ink lg:text-[2.75rem]">
 						How It Works
 					</h2>
-					<ol className="mx-auto mt-8 grid max-w-3xl gap-8 lg:mt-10 lg:grid-cols-3 lg:gap-4">
+					<ol className="mx-auto mt-3 grid max-w-3xl gap-8 lg:mt-4 lg:grid-cols-3 lg:gap-4">
 						{CONCIERGE_STEPS.map((step) => (
 							<li
 								key={step.number}
