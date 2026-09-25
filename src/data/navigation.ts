@@ -6,7 +6,6 @@ export interface NavLink {
 export const NAV_LINKS: NavLink[] = [
 	{ href: '/', label: 'Home' },
 	{ href: '/stays', label: 'Stays' },
-	{ href: '/#locations', label: 'Locations' },
 	{ href: '/concierge', label: 'Concierge' },
 	{ href: '/about', label: 'About' },
 	{ href: '/contact', label: 'Contact' },
