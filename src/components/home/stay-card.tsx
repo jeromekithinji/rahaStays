@@ -28,7 +28,7 @@ export function StayCard ({ stay }: StayCardProps) {
 					sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
 				/>
 			)}
-			<h3 className="mt-4 text-[1.05rem] font-semibold text-ink">
+			<h3 className="mt-3 text-[1.05rem] leading-snug font-semibold text-ink">
 				{href ? (
 					<Link href={href} className="hover:text-forest">
 						{stay.title}
@@ -37,34 +37,28 @@ export function StayCard ({ stay }: StayCardProps) {
 					stay.title
 				)}
 			</h3>
-			<p className="mt-1 text-sm text-muted-foreground">
+			<p className="mt-0.5 text-sm leading-snug text-muted-foreground">
 				{stay.location}
 			</p>
 			{specs ? (
-				<p className="mt-1 text-sm text-muted-foreground">
+				<p className="mt-0.5 text-sm leading-snug text-muted-foreground">
 					{specs}
 				</p>
 			) : null}
-			{stay.summary ? (
-				<p className="mt-2 text-sm">
-					{href ? (
-						<Link
-							href={href}
-							className="font-medium text-ink hover:text-forest"
-						>
-							View property
-						</Link>
-					) : (
-						<span className="font-medium text-ink">
-							Coming soon
-						</span>
-					)}
-					<span className="text-muted-foreground">
-						{' '}
-						· {stay.summary}
-					</span>
+			{href ? (
+				<p className="mt-1 text-sm leading-snug">
+					<Link
+						href={href}
+						className="font-medium text-ink hover:text-forest"
+					>
+						View property
+					</Link>
 				</p>
-			) : null}
+			) : (
+				<p className="mt-1 text-sm leading-snug font-medium text-ink">
+					Coming soon
+				</p>
+			)}
 		</article>
 	)
 }
