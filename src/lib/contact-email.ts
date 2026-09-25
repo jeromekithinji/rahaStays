@@ -239,3 +239,24 @@ export async function sendPropertyEnquiry (
 		body,
 	})
 }
+
+export async function sendNewsletterSignup (
+	formData: FormData,
+): Promise<ContactFormResult> {
+	const email = getString(formData, 'email')
+
+	if (!email) {
+		return { ok: false, error: 'Please enter your email address.' }
+	}
+
+	const body = formatLines([
+		['Form', 'Newsletter Signup'],
+		['Email', email],
+	])
+
+	return sendEmail({
+		subject: `Newsletter Signup — ${email}`,
+		replyTo: email,
+		body,
+	})
+}

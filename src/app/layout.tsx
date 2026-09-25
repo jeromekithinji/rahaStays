@@ -3,6 +3,7 @@ import { Outfit, Playfair_Display } from 'next/font/google'
 
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
+import { NewsletterCta } from '@/components/layout/newsletter-cta'
 
 import './globals.css'
 
@@ -37,6 +38,7 @@ export default function RootLayout ({
 			<body className="flex min-h-full flex-col bg-cream text-ink">
 				<SiteHeader />
 				{children}
+				<NewsletterCta />
 				<SiteFooter />
 			</body>
 		</html>
