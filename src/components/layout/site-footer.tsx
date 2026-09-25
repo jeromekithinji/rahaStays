@@ -88,14 +88,14 @@ export function SiteFooter () {
 							</li>
 							<li>
 								<a
-									href="tel:+254725749544"
+									href="tel:+254759285059"
 									className="flex items-center gap-2.5 text-[1.05rem] text-[#c9c4b8] transition-colors hover:text-gold"
 								>
 									<Phone
 										className="size-[1.05rem] shrink-0"
 										strokeWidth={1.6}
 									/>
-									+254 725 749 544
+									+254 759 285 059
 								</a>
 							</li>
 						</ul>

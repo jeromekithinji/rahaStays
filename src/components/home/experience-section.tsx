@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { FEATURES } from '@/data/features'
 
@@ -30,7 +31,16 @@ export function ExperienceSection () {
 								/>
 							</div>
 							<h3 className="mt-5 text-[1.05rem] font-semibold text-ink">
-								{feature.title}
+								{feature.href ? (
+									<Link
+										href={feature.href}
+										className="transition-colors hover:text-forest"
+									>
+										{feature.title}
+									</Link>
+								) : (
+									feature.title
+								)}
 							</h3>
 							<p className="mt-2 text-base leading-relaxed text-muted-foreground lg:text-[1.05rem]">
 								{feature.description}

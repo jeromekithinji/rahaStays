@@ -1,8 +1,13 @@
-import Link from 'next/link'
+'use client'
 
+import { useState } from 'react'
+
+import { PropertyEnquiryModal } from '@/components/home/property-enquiry-modal'
 import { INVESTOR_SERVICES } from '@/data/investor-services'
 
 export function InvestSection () {
+	const [enquiryOpen, setEnquiryOpen] = useState(false)
+
 	return (
 		<section
 			id="invest"
@@ -19,12 +24,13 @@ export function InvestSection () {
 						sourcing, interior design, furnishing, dynamic
 						pricing and full guest management.
 					</p>
-					<Link
-						href="/contact"
+					<button
+						type="button"
+						onClick={() => setEnquiryOpen(true)}
 						className="mt-8 inline-flex h-12 items-center rounded-full bg-gold px-7 text-[0.95rem] font-medium text-forest"
 					>
 						Learn More
-					</Link>
+					</button>
 				</div>
 				<ul className="grid grid-cols-2 justify-items-stretch gap-3 lg:justify-items-start lg:gap-4">
 					{INVESTOR_SERVICES.map((service) => {
@@ -49,6 +55,10 @@ export function InvestSection () {
 					})}
 				</ul>
 			</div>
+			<PropertyEnquiryModal
+				open={enquiryOpen}
+				onOpenChange={setEnquiryOpen}
+			/>
 		</section>
 	)
 }

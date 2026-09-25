@@ -3,6 +3,7 @@ export interface Feature {
 	description: string
 	image: string
 	imageAlt: string
+	href?: string
 }
 
 export const FEATURES: Feature[] = [
@@ -26,5 +27,6 @@ export const FEATURES: Feature[] = [
 			'From airport transfers to private chefs — experience more.',
 		image: '/images/features/concierge.jpg',
 		imageAlt: 'Rooftop infinity pool at sunset overlooking the city',
+		href: '/concierge',
 	},
 ]

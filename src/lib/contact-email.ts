@@ -1,6 +1,16 @@
 import { Resend } from 'resend'
 
 import { ENQUIRY_SUBJECTS, PREFERRED_LOCATIONS } from '@/data/contact'
+import {
+	BUDGET_RANGES,
+	CONTACT_METHODS,
+	HAS_PROPERTY_OPTIONS,
+	OWNER_ROLES,
+	PROPERTY_STATUS_OPTIONS,
+	PROPERTY_TYPES,
+	SUPPORT_OPTIONS,
+	TIMELINE_OPTIONS,
+} from '@/data/property-enquiry'
 
 export type ContactFormResult =
 	| { ok: true }
@@ -15,11 +25,26 @@ function getString (formData: FormData, key: string) {
 	return typeof value === 'string' ? value.trim() : ''
 }
 
+function getStrings (formData: FormData, key: string) {
+	return formData
+		.getAll(key)
+		.filter((value): value is string => typeof value === 'string')
+		.map((value) => value.trim())
+		.filter(Boolean)
+}
+
 function labelFor (
 	options: { value: string; label: string }[],
 	value: string,
 ) {
 	return options.find((option) => option.value === value)?.label ?? value
+}
+
+function labelsFor (
+	options: { value: string; label: string }[],
+	values: string[],
+) {
+	return values.map((value) => labelFor(options, value)).join(', ')
 }
 
 function formatLines (lines: [string, string][]) {
@@ -134,6 +159,82 @@ export async function sendCorporateEnquiry (
 
 	return sendEmail({
 		subject: `Corporate Enquiry — ${companyName}`,
+		replyTo: email,
+		body,
+	})
+}
+
+export async function sendPropertyEnquiry (
+	formData: FormData,
+): Promise<ContactFormResult> {
+	const fullName = getString(formData, 'fullName')
+	const email = getString(formData, 'email')
+	const phone = getString(formData, 'phone')
+	const basedIn = getString(formData, 'basedIn')
+	const ownerRole = getString(formData, 'ownerRole')
+	const support = getStrings(formData, 'support')
+	const hasProperty = getString(formData, 'hasProperty')
+	const location = getString(formData, 'location')
+	const propertyType = getString(formData, 'propertyType')
+	const bedrooms = getString(formData, 'bedrooms')
+	const propertyStatus = getString(formData, 'propertyStatus')
+	const timeline = getString(formData, 'timeline')
+	const goals = getString(formData, 'goals')
+	const budget = getString(formData, 'budget')
+	const rentalIncome = getString(formData, 'rentalIncome')
+	const contactMethod = getString(formData, 'contactMethod')
+	const preferredTime = getString(formData, 'preferredTime')
+	const consent = getString(formData, 'consent')
+
+	if (
+		!fullName ||
+		!email ||
+		!phone ||
+		support.length === 0 ||
+		!propertyStatus ||
+		!location ||
+		!timeline ||
+		consent !== 'yes'
+	) {
+		return { ok: false, error: 'Please complete all required fields.' }
+	}
+
+	const body = formatLines([
+		['Form', 'Property Management Enquiry'],
+		['Full name', fullName],
+		['Email', email],
+		['Phone / WhatsApp', phone],
+		['Based in', basedIn],
+		[
+			'Owner / Investor / Representative',
+			labelFor(OWNER_ROLES, ownerRole),
+		],
+		['Support needed', labelsFor(SUPPORT_OPTIONS, support)],
+		[
+			'Already have a property',
+			labelFor(HAS_PROPERTY_OPTIONS, hasProperty),
+		],
+		['Property location', location],
+		['Property type', labelFor(PROPERTY_TYPES, propertyType)],
+		['Bedrooms or units', bedrooms],
+		[
+			'Current status',
+			labelFor(PROPERTY_STATUS_OPTIONS, propertyStatus),
+		],
+		['Timeline', labelFor(TIMELINE_OPTIONS, timeline)],
+		['Goals', goals],
+		['Budget', labelFor(BUDGET_RANGES, budget)],
+		['Currently earning rental income', rentalIncome],
+		[
+			'Preferred contact method',
+			labelFor(CONTACT_METHODS, contactMethod),
+		],
+		['Preferred contact time', preferredTime],
+		['Consent', 'Yes'],
+	])
+
+	return sendEmail({
+		subject: `Property Management Enquiry — ${fullName}`,
 		replyTo: email,
 		body,
 	})
