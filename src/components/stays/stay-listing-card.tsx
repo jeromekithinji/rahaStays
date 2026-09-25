@@ -33,7 +33,10 @@ export function StayListingCard ({ stay }: StayListingCardProps) {
 					</div>
 				</div>
 			) : (
-				<div className="relative aspect-[389/259] w-full overflow-hidden rounded-2xl">
+				<Link
+					href={`/stays/${stay.id}`}
+					className="relative aspect-[389/259] w-full overflow-hidden rounded-2xl"
+				>
 					<Image
 						src={stay.image}
 						alt={stay.title}
@@ -41,11 +44,20 @@ export function StayListingCard ({ stay }: StayListingCardProps) {
 						className="object-cover"
 						sizes="(min-width: 1024px) 389px, 100vw"
 					/>
-				</div>
+				</Link>
 			)}
 			<div className="flex min-h-[117px] flex-1 flex-col pt-3">
 				<h2 className="font-sans text-[1.05rem] leading-snug font-semibold text-ink">
-					{stay.title}
+					{stay.isComingSoon ? (
+						stay.title
+					) : (
+						<Link
+							href={`/stays/${stay.id}`}
+							className="hover:text-forest"
+						>
+							{stay.title}
+						</Link>
+					)}
 				</h2>
 				<p className="mt-1.5 flex items-center gap-1.5 text-sm leading-none text-forest/60">
 					<MapPin className="size-3.5 shrink-0" strokeWidth={1.75} />
