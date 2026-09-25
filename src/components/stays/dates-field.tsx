@@ -12,37 +12,38 @@ import {
 import { ChevronDown, X } from 'lucide-react'
 
 import {
-	formatGuestLabel,
-	GuestPicker,
-	type GuestCounts,
-} from '@/components/home/guest-picker'
+	DateRangePicker,
+	formatDateRange,
+	formatNightCount,
+	type DateRange,
+} from '@/components/home/date-range-picker'
 
-interface GuestsFieldProps {
+interface DatesFieldProps {
 	id: string
 	label: string
-	name: string
-	value: GuestCounts
-	onChange: (value: GuestCounts) => void
+	value: DateRange
+	onChange: (value: DateRange) => void
 }
 
-const EMPTY_GUESTS: GuestCounts = {
-	adults: 0,
-	children: 0,
-	infants: 0,
-}
-
-export function GuestsField ({
+export function DatesField ({
 	id,
 	label,
-	name,
 	value,
 	onChange,
-}: GuestsFieldProps) {
+}: DatesFieldProps) {
 	const listId = useId()
 	const rootRef = useRef<HTMLDivElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
-	const guestLabel = formatGuestLabel(value)
-	const guestTotal = value.adults + value.children
+	const [calendarMonth, setCalendarMonth] = useState(() => {
+		if (value.from) {
+			return new Date(value.from.getFullYear(), value.from.getMonth(), 1)
+		}
+
+		const now = new Date()
+		return new Date(now.getFullYear(), now.getMonth(), 1)
+	})
+	const dateLabel = formatDateRange(value)
+	const nightsLabel = formatNightCount(value)
 
 	const handleDocumentPointerDown = useEffectEvent((event: Event) => {
 		const target = event.target as Node | null
@@ -66,7 +67,7 @@ export function GuestsField ({
 	function handleClear (event: MouseEvent | KeyboardEvent) {
 		event.preventDefault()
 		event.stopPropagation()
-		onChange(EMPTY_GUESTS)
+		onChange({ from: null, to: null })
 	}
 
 	return (
@@ -74,7 +75,20 @@ export function GuestsField ({
 			<span className="mb-1.5 block text-sm text-muted-foreground">
 				{label}
 			</span>
-			<input type="hidden" name={name} value={guestTotal || ''} />
+			{value.from ? (
+				<input
+					type="hidden"
+					name="from"
+					value={value.from.toISOString().slice(0, 10)}
+				/>
+			) : null}
+			{value.to ? (
+				<input
+					type="hidden"
+					name="to"
+					value={value.to.toISOString().slice(0, 10)}
+				/>
+			) : null}
 			<button
 				id={id}
 				type="button"
@@ -83,20 +97,27 @@ export function GuestsField ({
 				aria-controls={listId}
 				onClick={() => setIsOpen((current) => !current)}
 				className={[
-					'flex h-14 w-full items-center justify-between rounded-md border bg-white px-3 text-left text-[0.95rem] outline-none transition-colors',
+					'flex h-14 w-full items-center justify-between rounded-md border bg-white px-3 py-1.5 text-left outline-none transition-colors',
 					isOpen ? 'border-forest' : 'border-[#e6e3db]',
-					guestLabel ? 'text-ink' : 'text-[#8a8a86]',
+					dateLabel ? 'text-ink' : 'text-[#8a8a86]',
 				].join(' ')}
 			>
-				<span className="truncate leading-snug">
-					{guestLabel ?? 'Add guests'}
+				<span className="min-w-0 flex-1">
+					<span className="block truncate text-[0.95rem] leading-tight">
+						{dateLabel ?? 'Add dates'}
+					</span>
+					{nightsLabel ? (
+						<span className="mt-0.5 block truncate text-xs leading-tight text-muted-foreground">
+							{nightsLabel}
+						</span>
+					) : null}
 				</span>
 				<span className="flex shrink-0 items-center gap-1.5">
-					{guestLabel ? (
+					{dateLabel ? (
 						<span
 							role="button"
 							tabIndex={0}
-							aria-label="Clear guests"
+							aria-label="Clear dates"
 							onClick={handleClear}
 							onKeyDown={(event) => {
 								if (event.key === 'Enter' || event.key === ' ') {
@@ -123,9 +144,14 @@ export function GuestsField ({
 					id={listId}
 					role="dialog"
 					aria-label={label}
-					className="absolute top-[calc(100%+0.5rem)] right-0 z-30 w-[min(100vw-2.5rem,22rem)]"
+					className="absolute top-[calc(100%+0.5rem)] left-0 z-30 w-[min(100vw-2.5rem,42rem)]"
 				>
-					<GuestPicker value={value} onChange={onChange} />
+					<DateRangePicker
+						value={value}
+						onChange={onChange}
+						month={calendarMonth}
+						onMonthChange={setCalendarMonth}
+					/>
 				</div>
 			) : null}
 		</div>

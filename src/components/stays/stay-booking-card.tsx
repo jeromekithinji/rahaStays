@@ -75,6 +75,7 @@ export function StayBookingCard ({
 								type="date"
 								name="checkIn"
 								required
+								min={new Date().toISOString().slice(0, 10)}
 								className="mt-1 w-full bg-transparent text-sm text-ink outline-none"
 							/>
 						</label>
@@ -86,6 +87,7 @@ export function StayBookingCard ({
 								type="date"
 								name="checkOut"
 								required
+								min={new Date().toISOString().slice(0, 10)}
 								className="mt-1 w-full bg-transparent text-sm text-ink outline-none"
 							/>
 						</label>

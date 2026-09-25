@@ -101,7 +101,7 @@ export function FilterField ({
 				aria-controls={listId}
 				onClick={handleToggle}
 				className={[
-					'flex h-11 w-full items-center justify-between rounded-md border bg-white px-3 text-left text-[0.95rem] outline-none transition-colors',
+					'flex h-14 w-full items-center justify-between rounded-md border bg-white px-3 text-left text-[0.95rem] outline-none transition-colors',
 					isOpen ? 'border-forest' : 'border-[#e6e3db]',
 					selectedLabels.length > 0 ? 'text-ink' : 'text-[#8a8a86]',
 				].join(' ')}

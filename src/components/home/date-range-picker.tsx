@@ -20,6 +20,14 @@ function startOfDay (date: Date) {
 	return new Date(date.getFullYear(), date.getMonth(), date.getDate())
 }
 
+function today () {
+	return startOfDay(new Date())
+}
+
+function isBeforeToday (date: Date) {
+	return startOfDay(date).getTime() < today().getTime()
+}
+
 function isSameDay (a: Date, b: Date) {
 	return (
 		a.getFullYear() === b.getFullYear() &&
@@ -30,6 +38,13 @@ function isSameDay (a: Date, b: Date) {
 
 function addMonths (date: Date, amount: number) {
 	return new Date(date.getFullYear(), date.getMonth() + amount, 1)
+}
+
+function isSameMonth (a: Date, b: Date) {
+	return (
+		a.getFullYear() === b.getFullYear() &&
+		a.getMonth() === b.getMonth()
+	)
 }
 
 function getMonthDays (month: Date) {
@@ -75,6 +90,7 @@ function MonthGrid ({
 	showNext,
 	onPrev,
 	onNext,
+	canGoPrev,
 }: {
 	month: Date
 	value: DateRange
@@ -83,6 +99,7 @@ function MonthGrid ({
 	showNext?: boolean
 	onPrev?: () => void
 	onNext?: () => void
+	canGoPrev?: boolean
 }) {
 	const cells = getMonthDays(month)
 	const title = month.toLocaleDateString('en-US', {
@@ -98,7 +115,8 @@ function MonthGrid ({
 						type="button"
 						aria-label="Previous month"
 						onClick={onPrev}
-						className="flex size-8 items-center justify-center rounded-full text-[#717171] transition-colors hover:bg-[#f0f0f0]"
+						disabled={canGoPrev === false}
+						className="flex size-8 items-center justify-center rounded-full text-[#717171] transition-colors hover:bg-[#f0f0f0] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
 					>
 						<ChevronLeft className="size-4" strokeWidth={1.8} />
 					</button>
@@ -135,6 +153,7 @@ function MonthGrid ({
 						return <span key={`empty-${index}`} className="h-10" />
 					}
 
+					const isPast = isBeforeToday(date)
 					const isStart = value.from
 						? isSameDay(date, value.from)
 						: false
@@ -145,16 +164,23 @@ function MonthGrid ({
 						<button
 							key={date.toISOString()}
 							type="button"
-							onClick={() => onSelect(date)}
+							disabled={isPast}
+							aria-disabled={isPast}
+							onClick={() => {
+								if (!isPast) {
+									onSelect(date)
+								}
+							}}
 							className={[
 								'relative flex h-10 items-center justify-center text-sm',
-								inRange ? 'bg-[#f0f0f0]' : '',
+								inRange && !isPast ? 'bg-[#f0f0f0]' : '',
 								isStart && value.to
 									? 'rounded-l-full bg-[#f0f0f0]'
 									: '',
 								isEnd && value.from
 									? 'rounded-r-full bg-[#f0f0f0]'
 									: '',
+								isPast ? 'cursor-not-allowed' : '',
 							]
 								.filter(Boolean)
 								.join(' ')}
@@ -162,9 +188,11 @@ function MonthGrid ({
 							<span
 								className={[
 									'flex size-10 items-center justify-center rounded-full transition-colors',
-									isStart || isEnd
-										? 'bg-ink font-medium text-white'
-										: 'text-ink hover:bg-[#ebebeb]',
+									isPast
+										? 'text-[#c4c4c4]'
+										: isStart || isEnd
+											? 'bg-ink font-medium text-white'
+											: 'text-ink hover:bg-[#ebebeb]',
 								].join(' ')}
 							>
 								{date.getDate()}
@@ -183,7 +211,19 @@ export function DateRangePicker ({
 	month,
 	onMonthChange,
 }: DateRangePickerProps) {
+	const currentMonth = new Date(
+		today().getFullYear(),
+		today().getMonth(),
+		1,
+	)
+	const canGoPrev = !isSameMonth(month, currentMonth) &&
+		month.getTime() > currentMonth.getTime()
+
 	function handleSelect (date: Date) {
+		if (isBeforeToday(date)) {
+			return
+		}
+
 		const selected = startOfDay(date)
 
 		if (!value.from || (value.from && value.to)) {
@@ -200,6 +240,10 @@ export function DateRangePicker ({
 	}
 
 	function handlePrev () {
+		if (!canGoPrev) {
+			return
+		}
+
 		onMonthChange(addMonths(month, -1))
 	}
 
@@ -220,6 +264,7 @@ export function DateRangePicker ({
 					showNext
 					onPrev={handlePrev}
 					onNext={handleNext}
+					canGoPrev={canGoPrev}
 				/>
 			</div>
 			<div className="hidden gap-10 lg:grid lg:grid-cols-2">
@@ -229,6 +274,7 @@ export function DateRangePicker ({
 					onSelect={handleSelect}
 					showPrev
 					onPrev={handlePrev}
+					canGoPrev={canGoPrev}
 				/>
 				<MonthGrid
 					month={nextMonth}
@@ -262,4 +308,26 @@ export function formatDateRange (range: DateRange) {
 	})
 
 	return `${fromLabel} - ${toLabel}`
+}
+
+export function getNightCount (range: DateRange) {
+	if (!range.from || !range.to) {
+		return null
+	}
+
+	const from = startOfDay(range.from).getTime()
+	const to = startOfDay(range.to).getTime()
+	const nights = Math.round((to - from) / (1000 * 60 * 60 * 24))
+
+	return nights > 0 ? nights : null
+}
+
+export function formatNightCount (range: DateRange) {
+	const nights = getNightCount(range)
+
+	if (!nights) {
+		return null
+	}
+
+	return nights === 1 ? '1 night' : `${nights} nights`
 }
