@@ -25,7 +25,7 @@ export function StayListingCard ({ stay }: StayListingCardProps) {
 							strokeWidth={1.75}
 						/>
 						<p className="text-[1.05rem] font-semibold text-[#6b6b66]">
-							{stay.title.replace(' by Raha Stays', '')}
+							{stay.title}
 						</p>
 						<p className="mt-1 text-sm text-[#9a9a94]">
 							Coming Soon

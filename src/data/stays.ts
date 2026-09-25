@@ -33,7 +33,7 @@ export const STAY_FILTERS: { id: StayFilter; label: string }[] = [
 export const STAYS: Stay[] = [
 	{
 		id: 'riara-one',
-		title: 'Riara One by Raha Stays',
+		title: 'Riara One Residency',
 		location: 'Kilimani, Nairobi',
 		beds: 2,
 		baths: 2,
@@ -44,7 +44,7 @@ export const STAYS: Stay[] = [
 	},
 	{
 		id: 'zenith-gardens',
-		title: 'Zenith Gardens by Raha',
+		title: 'Zenith Gardens',
 		location: 'Kilimani, Nairobi',
 		beds: 1,
 		baths: 1,
@@ -55,7 +55,7 @@ export const STAYS: Stay[] = [
 	},
 	{
 		id: 'vipingo-ridge',
-		title: 'Vipingo Ridge by Raha Stays',
+		title: 'Vipingo Ridge',
 		location: 'Vipingo, Kenya Coast',
 		isComingSoon: true,
 		filters: ['villas', 'mombasa'],
