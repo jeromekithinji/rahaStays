@@ -19,7 +19,7 @@ export function Hero () {
 			<div className="relative z-[35] flex min-h-[calc(100dvh-3.75rem)] flex-col items-center justify-center px-5 py-12 lg:min-h-[640px] lg:px-8 lg:py-16">
 				<div className="mx-auto w-full max-w-xl text-center lg:max-w-2xl">
 					<h1 className="font-heading text-[2.15rem] leading-[1.1] font-medium tracking-[-0.02em] text-white lg:text-6xl">
-						Stay Beautifully.
+						Live Beautifully.
 					</h1>
 					<p className="font-heading mt-1.5 text-[1.35rem] leading-none font-normal text-gold italic lg:mt-2 lg:text-[1.75rem]">
 						Experience More.
