@@ -7,11 +7,12 @@ export function Hero () {
 		<section className="relative min-h-[calc(100dvh-3.75rem)] lg:min-h-[640px]">
 			<div className="absolute inset-0 z-0 overflow-hidden">
 				<Image
-					src="/images/hero.png"
-					alt="Modern serviced apartment living room with city skyline views"
+					src="/images/stays/riara-one/tv-room-1.jpg"
+					alt="Modern living room with sofa, coffee table and smart TV"
 					fill
 					priority
-					className="object-cover object-center"
+					quality={95}
+					className="object-cover object-[center_40%]"
 					sizes="100vw"
 				/>
 				<div className="absolute inset-0 bg-black/35" />
