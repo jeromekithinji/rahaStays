@@ -3,6 +3,7 @@
 import {
 	sendCorporateEnquiry,
 	sendGeneralEnquiry,
+	sendLongStayEnquiry,
 	sendNewsletterSignup,
 	sendPropertyEnquiry,
 	type ContactFormResult,
@@ -24,6 +25,12 @@ export async function submitPropertyEnquiry (
 	formData: FormData,
 ): Promise<ContactFormResult> {
 	return sendPropertyEnquiry(formData)
+}
+
+export async function submitLongStayEnquiry (
+	formData: FormData,
+): Promise<ContactFormResult> {
+	return sendLongStayEnquiry(formData)
 }
 
 export async function submitNewsletterSignup (

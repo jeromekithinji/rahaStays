@@ -240,6 +240,55 @@ export async function sendPropertyEnquiry (
 	})
 }
 
+const LONG_STAY_LENGTHS = [
+	{ value: '2-weeks', label: '2 weeks' },
+	{ value: '1-month', label: '1 month' },
+	{ value: '2-3-months', label: '2–3 months' },
+	{ value: '3-plus-months', label: '3+ months' },
+]
+
+const LONG_STAY_BOOKING_TYPES = [
+	{ value: 'individual', label: 'Individual' },
+	{ value: 'corporate', label: 'Corporate' },
+]
+
+export async function sendLongStayEnquiry (
+	formData: FormData,
+): Promise<ContactFormResult> {
+	const bookingType = getString(formData, 'bookingType')
+	const fullName = getString(formData, 'fullName')
+	const companyName = getString(formData, 'companyName')
+	const email = getString(formData, 'email')
+	const phone = getString(formData, 'phone')
+	const lengthOfStay = getString(formData, 'lengthOfStay')
+	const message = getString(formData, 'message')
+
+	if (!bookingType || !fullName || !email || !lengthOfStay) {
+		return { ok: false, error: 'Please complete all required fields.' }
+	}
+
+	if (bookingType === 'corporate' && !companyName) {
+		return { ok: false, error: 'Please enter your company name.' }
+	}
+
+	const body = formatLines([
+		['Form', 'Long-Stay Rate Request'],
+		['Booking type', labelFor(LONG_STAY_BOOKING_TYPES, bookingType)],
+		['Full name', fullName],
+		['Company name', companyName],
+		['Email', email],
+		['Phone / WhatsApp', phone],
+		['Length of stay', labelFor(LONG_STAY_LENGTHS, lengthOfStay)],
+		['Message', message],
+	])
+
+	return sendEmail({
+		subject: `Long-Stay Rate Request — ${fullName}`,
+		replyTo: email,
+		body,
+	})
+}
+
 export async function sendNewsletterSignup (
 	formData: FormData,
 ): Promise<ContactFormResult> {

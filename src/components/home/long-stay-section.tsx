@@ -1,6 +1,12 @@
-import Link from 'next/link'
+'use client'
+
+import { useState } from 'react'
+
+import { LongStayEnquiryModal } from '@/components/home/long-stay-enquiry-modal'
 
 export function LongStaySection () {
+	const [enquiryOpen, setEnquiryOpen] = useState(false)
+
 	return (
 		<section
 			id="long-stay"
@@ -16,13 +22,18 @@ export function LongStaySection () {
 						stays and relocations.
 					</p>
 				</div>
-				<Link
-					href="/contact"
-					className="inline-flex h-12 shrink-0 items-center justify-center rounded-full border border-forest px-7 text-[0.95rem] font-medium text-forest"
+				<button
+					type="button"
+					onClick={() => setEnquiryOpen(true)}
+					className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-forest px-7 text-[0.95rem] font-medium text-forest transition-colors hover:bg-forest hover:text-gold-soft active:bg-forest-deep"
 				>
 					Request Long-Stay Rate
-				</Link>
+				</button>
 			</div>
+			<LongStayEnquiryModal
+				open={enquiryOpen}
+				onOpenChange={setEnquiryOpen}
+			/>
 		</section>
 	)
 }
