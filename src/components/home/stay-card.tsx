@@ -1,16 +1,14 @@
 import Link from 'next/link'
 
 import { StayMedia } from '@/components/stays/stay-media'
-import type { Stay } from '@/data/stays'
+import { formatStaySpecs, type Stay } from '@/data/stays'
 
 interface StayCardProps {
 	stay: Stay
 }
 
 export function StayCard ({ stay }: StayCardProps) {
-	const specs = stay.beds && stay.baths && stay.guests
-		? `${stay.beds} bed${stay.beds === 1 ? '' : 's'} · ${stay.baths} bath${stay.baths === 1 ? '' : 's'} · Up to ${stay.guests} guests`
-		: null
+	const specs = formatStaySpecs(stay)
 	const href = stay.isComingSoon ? undefined : `/stays/${stay.id}`
 
 	return (

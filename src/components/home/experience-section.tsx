@@ -7,7 +7,7 @@ export function ExperienceSection () {
 	return (
 		<section
 			id="experience"
-			className="px-5 pb-10 pt-10 lg:px-8 lg:pb-14 lg:pt-16"
+			className="bg-[#F0E9E1] px-5 pb-10 pt-10 lg:px-8 lg:pb-14 lg:pt-16"
 		>
 			<div className="mx-auto max-w-[1280px]">
 				<h2 className="font-heading max-w-xl text-[1.55rem] leading-tight font-medium tracking-[-0.02em] text-ink lg:text-[2.15rem]">

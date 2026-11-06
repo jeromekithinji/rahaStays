@@ -1,3 +1,4 @@
+import { AboutSection } from '@/components/home/about-section'
 import { AudienceSection } from '@/components/home/audience-section'
 import { ExperienceSection } from '@/components/home/experience-section'
 import { Hero } from '@/components/home/hero'
@@ -9,6 +10,7 @@ export default function Home () {
 	return (
 		<main>
 			<Hero />
+			<AboutSection />
 			<section id="stays" className="bg-cream">
 				<StaysSection />
 				<ExperienceSection />

@@ -302,6 +302,24 @@ export function getStayById (id: string) {
 	return STAYS.find((stay) => stay.id === id)
 }
 
+export function formatStaySpecs (stay: Stay) {
+	const parts: string[] = []
+
+	if (stay.beds) {
+		parts.push(`${stay.beds} bed${stay.beds === 1 ? '' : 's'}`)
+	}
+
+	if (stay.baths) {
+		parts.push(`${stay.baths} bath${stay.baths === 1 ? '' : 's'}`)
+	}
+
+	if (stay.guests) {
+		parts.push(`Up to ${stay.guests} guest${stay.guests === 1 ? '' : 's'}`)
+	}
+
+	return parts.length > 0 ? parts.join(' · ') : null
+}
+
 export function formatStayPrice (stay: Stay) {
 	if (!stay.pricePerNight || !stay.currency) return null
 

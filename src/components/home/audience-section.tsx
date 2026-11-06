@@ -21,11 +21,11 @@ export function AudienceSection () {
 
 						return (
 							<li
-								key={audience.label}
+								key={audience.id}
 								className="group relative w-full max-w-[191px]"
 							>
-								<div
-									tabIndex={0}
+								<Link
+									href={audience.href}
 									className="flex h-[93px] w-full flex-col items-center justify-center rounded-xl border border-[#e6e3db] bg-white px-3 text-center transition-colors outline-none hover:border-forest hover:bg-[#f3f6f3] focus-visible:border-forest focus-visible:bg-[#f3f6f3]"
 								>
 									<Icon
@@ -35,7 +35,7 @@ export function AudienceSection () {
 									<p className="mt-2 text-[0.95rem] font-medium text-ink">
 										{audience.label}
 									</p>
-								</div>
+								</Link>
 								<div
 									role="tooltip"
 									className="pointer-events-none absolute top-[calc(100%+0.35rem)] left-1/2 z-30 w-[min(17.5rem,calc(100vw-2.5rem))] -translate-x-1/2 opacity-0 transition-opacity duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"
@@ -62,6 +62,14 @@ export function AudienceSection () {
 						)
 					})}
 				</ul>
+				<div className="mt-8 flex justify-center lg:mt-10">
+					<Link
+						href="/our-clients"
+						className="text-[0.95rem] font-medium text-forest underline-offset-4 transition-colors hover:underline"
+					>
+						View all clients
+					</Link>
+				</div>
 			</div>
 		</section>
 	)

@@ -6,7 +6,7 @@ import { StayAmenities } from '@/components/stays/stay-amenities'
 import { StayBookingCard } from '@/components/stays/stay-booking-card'
 import { StayDetailActions } from '@/components/stays/stay-detail-actions'
 import { StayGallery } from '@/components/stays/stay-gallery'
-import type { Stay } from '@/data/stays'
+import { formatStaySpecs, type Stay } from '@/data/stays'
 
 interface StayDetailProps {
 	stay: Stay
@@ -19,17 +19,7 @@ export function StayDetail ({ stay }: StayDetailProps) {
 			? [stay.image]
 			: []
 
-	const specs = [
-		stay.guests
-			? `${stay.guests} guest${stay.guests === 1 ? '' : 's'}`
-			: null,
-		stay.beds
-			? `${stay.beds} bedroom${stay.beds === 1 ? '' : 's'}`
-			: null,
-		stay.baths
-			? `${stay.baths} bath${stay.baths === 1 ? '' : 's'}`
-			: null,
-	].filter(Boolean)
+	const specs = formatStaySpecs(stay)
 
 	if (stay.isComingSoon) {
 		return (
@@ -80,9 +70,9 @@ export function StayDetail ({ stay }: StayDetailProps) {
 							{stay.propertyLabel ?? 'Entire stay'} hosted by
 							Raha Stays
 						</h2>
-						{specs.length > 0 ? (
+						{specs ? (
 							<p className="mt-2 text-[0.95rem] text-muted-foreground">
-								{specs.join(' · ')}
+								{specs}
 							</p>
 						) : null}
 						{stay.description && stay.description.length > 0 ? (

@@ -17,6 +17,7 @@ export const FOOTER_SOCIAL: FooterSocialLink[] = [
 export const FOOTER_EXPLORE: FooterLink[] = [
 	{ href: '/stays', label: 'Stays' },
 	{ href: '/concierge', label: 'Concierge' },
+	{ href: '/our-clients', label: 'Our Clients' },
 	{ href: '/about', label: 'About' },
 	{ href: '/contact', label: 'Contact' },
 ]

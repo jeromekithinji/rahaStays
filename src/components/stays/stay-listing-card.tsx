@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Bath, BedDouble, MapPin, Users } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 
-import type { Stay } from '@/data/stays'
+import { formatStaySpecs, type Stay } from '@/data/stays'
 
 interface StayListingCardProps {
 	stay: Stay
@@ -10,7 +10,7 @@ interface StayListingCardProps {
 
 /** Figma: tile 389×376, image 389×259 */
 export function StayListingCard ({ stay }: StayListingCardProps) {
-	const hasSpecs = Boolean(stay.beds && stay.baths && stay.guests)
+	const specs = formatStaySpecs(stay)
 
 	return (
 		<article
@@ -59,32 +59,20 @@ export function StayListingCard ({ stay }: StayListingCardProps) {
 						</Link>
 					)}
 				</h2>
-				<p className="mt-1.5 flex items-center gap-1.5 text-sm leading-none text-forest/60">
-					<MapPin className="size-3.5 shrink-0" strokeWidth={1.75} />
+				<p className="mt-1.5 flex items-center gap-1.5 text-sm leading-snug text-muted-foreground">
 					{stay.location}
 				</p>
-				{hasSpecs ? (
-					<ul className="mt-0.5 flex items-center gap-5 text-sm leading-none text-forest/60">
-						<li className="flex items-center gap-1.5">
-							<BedDouble className="size-4" strokeWidth={1.6} />
-							{stay.beds}
-						</li>
-						<li className="flex items-center gap-1.5">
-							<Bath className="size-4" strokeWidth={1.6} />
-							{stay.baths}
-						</li>
-						<li className="flex items-center gap-1.5">
-							<Users className="size-4" strokeWidth={1.6} />
-							{stay.guests}
-						</li>
-					</ul>
+				{specs ? (
+					<p className="mt-0.5 text-sm leading-snug text-muted-foreground">
+						{specs}
+					</p>
 				) : null}
 				{stay.isComingSoon ? null : (
 					<Link
 						href={`/stays/${stay.id}`}
-						className="mt-2.5 inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-forest"
+						className="mt-2.5 inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-ink hover:text-forest"
 					>
-						View Stay
+						View property
 						<ArrowRight className="size-4" strokeWidth={1.75} />
 					</Link>
 				)}
