@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Outfit, Playfair_Display } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
@@ -7,17 +7,33 @@ import { NewsletterCta } from '@/components/layout/newsletter-cta'
 
 import './globals.css'
 
-const playfair = Playfair_Display({
+const playfair = localFont({
+	src: [
+		{
+			path: '../fonts/playfair-latin.woff2',
+			weight: '400 700',
+			style: 'normal',
+		},
+		{
+			path: '../fonts/playfair-italic-latin.woff2',
+			weight: '400 700',
+			style: 'italic',
+		},
+	],
 	variable: '--font-playfair',
-	subsets: ['latin'],
-	style: ['normal', 'italic'],
-	weight: ['400', '500', '600', '700'],
+	display: 'swap',
 })
 
-const outfit = Outfit({
+const outfit = localFont({
+	src: [
+		{
+			path: '../fonts/outfit-latin.woff2',
+			weight: '300 700',
+			style: 'normal',
+		},
+	],
 	variable: '--font-outfit',
-	subsets: ['latin'],
-	weight: ['300', '400', '500', '600', '700'],
+	display: 'swap',
 })
 
 export const metadata: Metadata = {
