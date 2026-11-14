@@ -51,7 +51,10 @@ export default function RootLayout ({
 			className={`${playfair.variable} ${outfit.variable} h-full antialiased`}
 			suppressHydrationWarning
 		>
-			<body className="flex min-h-full flex-col bg-cream text-ink">
+			<body
+				className="flex min-h-full flex-col bg-cream text-ink"
+				suppressHydrationWarning
+			>
 				<SiteHeader />
 				{children}
 				<NewsletterCta />

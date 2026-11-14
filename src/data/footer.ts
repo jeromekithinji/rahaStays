@@ -8,10 +8,22 @@ export interface FooterSocialLink extends FooterLink {
 }
 
 export const FOOTER_SOCIAL: FooterSocialLink[] = [
-	{ id: 'instagram', href: '#', label: 'Instagram' },
-	{ id: 'facebook', href: '#', label: 'Facebook' },
+	{
+		id: 'instagram',
+		href: 'https://www.instagram.com/_rahastays?srtk=MTY3ajRvdnM4ZW1iaQ%3D%3D&utm_source=qr',
+		label: 'Instagram',
+	},
+	{
+		id: 'facebook',
+		href: 'https://www.facebook.com/share/1FQzBvyf8J/?mibextid=wwXIfr',
+		label: 'Facebook',
+	},
 	{ id: 'linkedin', href: '#', label: 'LinkedIn' },
-	{ id: 'tiktok', href: '#', label: 'TikTok' },
+	{
+		id: 'tiktok',
+		href: 'https://www.tiktok.com/@raha.stays254?_r=1&_t=ZS-9BI0eaVTyMw',
+		label: 'TikTok',
+	},
 ]
 
 export const FOOTER_EXPLORE: FooterLink[] = [

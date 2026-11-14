@@ -106,6 +106,12 @@ export function SiteFooter () {
 										href={link.href}
 										aria-label={link.label}
 										title={link.label}
+										{...(link.href.startsWith('http')
+											? {
+													target: '_blank',
+													rel: 'noopener noreferrer',
+												}
+											: {})}
 										className="peer flex size-10 items-center justify-center rounded-full border border-gold/45 text-gold transition-colors hover:border-gold hover:bg-gold/10 focus-visible:border-gold focus-visible:outline-none"
 									>
 										<SocialIcon
