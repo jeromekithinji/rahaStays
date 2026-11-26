@@ -15,7 +15,7 @@ export function LogoMark ({
 }: LogoMarkProps) {
 	return (
 		<Image
-			src="/images/logo.png"
+			src="/images/raha-logo.png"
 			alt=""
 			width={size}
 			height={size}
