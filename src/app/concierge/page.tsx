@@ -30,7 +30,7 @@ export default function ConciergePage () {
 					<ConciergeServices />
 					<div className="mt-5 text-center lg:mt-6">
 						<a
-							href="https://wa.me/254725749544"
+							href="https://wa.me/254759285059"
 							className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-forest px-7 text-[0.95rem] font-medium text-gold-soft"
 						>
 							<MessageCircle

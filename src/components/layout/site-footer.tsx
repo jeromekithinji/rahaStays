@@ -98,6 +98,18 @@ export function SiteFooter () {
 									+254 759 285 059
 								</a>
 							</li>
+							<li>
+								<a
+									href="tel:+254725749544"
+									className="flex items-center gap-2.5 text-[1.05rem] text-[#c9c4b8] transition-colors hover:text-gold"
+								>
+									<Phone
+										className="size-[1.05rem] shrink-0"
+										strokeWidth={1.6}
+									/>
+									+254 725 749 544
+								</a>
+							</li>
 						</ul>
 						<ul className="mt-6 flex flex-wrap gap-3">
 							{FOOTER_SOCIAL.map((link) => (
