@@ -45,7 +45,7 @@ export function StayBookingCard ({
 			.join('\n')
 
 		window.open(
-			`https://wa.me/254759285059?text=${encodeURIComponent(message)}`,
+			`https://wa.me/254725749544?text=${encodeURIComponent(message)}`,
 			'_blank',
 			'noopener,noreferrer',
 		)

@@ -151,7 +151,7 @@ export default function AboutPage () {
 					</ul>
 					<div className="mt-12 text-center lg:mt-16">
 						<a
-							href="https://wa.me/254759285059"
+							href="https://wa.me/254725749544"
 							className="inline-flex h-12 items-center justify-center rounded-full bg-forest px-8 text-[0.95rem] font-medium text-gold-soft"
 						>
 							Discuss Property Management
@@ -159,10 +159,10 @@ export default function AboutPage () {
 						<p className="mt-4 text-sm text-muted-foreground">
 							Or WhatsApp us at{' '}
 							<a
-								href="https://wa.me/254759285059"
+								href="https://wa.me/254725749544"
 								className="text-ink"
 							>
-								+254 759 285 059
+								+254 725 749 544
 							</a>
 						</p>
 					</div>

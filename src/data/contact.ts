@@ -17,8 +17,8 @@ export const CONTACT_METHODS: ContactMethod[] = [
 	},
 	{
 		title: 'WhatsApp',
-		value: '+254 759 285 059',
-		href: 'https://wa.me/254759285059',
+		value: '+254 725 749 544',
+		href: 'https://wa.me/254725749544',
 		icon: Phone,
 	},
 	{
